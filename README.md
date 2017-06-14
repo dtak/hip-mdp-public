@@ -1,6 +1,6 @@
 # Robust and Efficient Transfer Learning with Hidden Parameter Markov Decision Processes
 
-This repository contains an implementation of a framework for training and testing Hidden Parameter Markov Decision Processes (INSERT LINK TO ARXIV) and other RL benchmarks.
+This repository contains an implementation of a framework for training and testing Hidden Parameter Markov Decision Processes (**INSERT LINK TO ARXIV**) and other RL benchmarks.
 
 ### Abstract
 
@@ -18,8 +18,6 @@ complex dynamics.
 The juypter notebook titled toy_example.ipynb contains an example of training and testing a HiP-MDP with embedded weights on a 2-D navigation domain.
 
 ### Prerequisites
-
-What things you need to install the software and how to install them
 
 ```
 Python 2.7.12
