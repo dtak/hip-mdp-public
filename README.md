@@ -1,6 +1,6 @@
 # Robust and Efficient Transfer Learning with Hidden Parameter Markov Decision Processes
 
-This repository contains an implementation of a framework for training and testing Hidden Parameter Markov Decision Processes (**INSERT LINK TO ARXIV**) and other RL benchmarks.
+This repository contains an implementation of a framework for training and testing Hidden Parameter Markov Decision Processes [(on arXiv.org)](https://arxiv.org/abs/1706.06544) and other RL benchmarks.
 
 ### Abstract
 
@@ -41,7 +41,7 @@ The source code and documentation are licensed under the terms of the [MIT Licen
 ## Acknowledgments
 * Harvard DTAK
 * Harvard Paulson School of Engineering and Applied Sciences
-* Lincoln Laboratory
+* MIT Lincoln Laboratory
 * Alpha divergence bayesian neural network adapted from Jose Miguel Hernandez Lobato's original code
 * HIV treatment and acrobot simulators adapted from RLPy's [simulators](https://bitbucket.org/rlpy/rlpy/src/master/rlpy/Domains)
 * Priority queue adapted from Kai Arulkumaran's [Atari](https://github.com/Kaixhin/Atari) repository
