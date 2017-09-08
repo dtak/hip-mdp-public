@@ -34,12 +34,12 @@ class Qnetwork():
 		self.out_biases = tf.Variable(tf.zeros([num_actions]))
 		self.output = tf.matmul(self.hidden2,self.out_weights) + self.out_biases
 		self.predict = tf.argmax(self.output,1)
-		self.curate_output = tf.reduce_sum(tf.mul(self.action_array,self.output),1)
-		self.td_error = self.next_Q - tf.reduce_sum(tf.mul(self.action_array,self.output),1)
+		self.curate_output = tf.reduce_sum(tf.multiply(self.action_array,self.output),1)
+		self.td_error = self.next_Q - tf.reduce_sum(tf.multiply(self.action_array,self.output),1)
 		# Define the loss according the the bellman equations
 		self.td_loss = 0.5*tf.square(self.td_error)
 
-		self.loss = tf.reduce_sum(tf.mul(self.importance_weights, self.td_loss))
+		self.loss = tf.reduce_sum(tf.multiply(self.importance_weights, self.td_loss))
 		if clip > 0: # Train and backpropagate clipped errors
 
 			def ClipIfNotNone(gradient):
