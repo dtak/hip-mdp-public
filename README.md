@@ -41,8 +41,9 @@ seaborn 0.7.1
 
 * **Taylor Killian**
 * **Samuel Daulton**
-* **Finale Doshi-Velez**
 * **George Konidaris**
+* **Finale Doshi-Velez**
+
 
 ## License
 
