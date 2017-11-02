@@ -21,9 +21,10 @@ class HiPMDP(object):
 		- Model-free (run_type='modelfree')
 	"""
 
-	def __init__(self, domain, preset_hidden_params, run_type='full', ddqn_learning_rate=0.0001, episode_count=500,
-		bnn_hidden_layer_size=25, bnn_num_hidden_layers=2, bnn_network_weights=None, 
-		eps_min=0.15, test_inst=None, create_exp_batch=False, save_results=False, grid_beta=0.23, print_output=False):
+	def __init__(self, domain, preset_hidden_params, run_type='full', ddqn_learning_rate=0.0001, 
+		episode_count=500, bnn_hidden_layer_size=25, bnn_num_hidden_layers=2, bnn_network_weights=None, 
+		eps_min=0.15, test_inst=None, create_exp_batch=False, num_batch_instances=False, save_results=False, 
+		grid_beta=0.23, print_output=False):
 		"""
 		Initialize framework.
 
@@ -33,7 +34,11 @@ class HiPMDP(object):
 			the hidden parameter settings for that instance
 
 		Keyword arguments:
-		run_type -- DQN learning rate (default=0.0001)
+		run_type -- 'full': Constructs a HiP-MDP model through which transfer is facilitated and with which accelerates policy learning, 
+					'full_linear': Constructs a HiP-MDP model, but associates the latent weights w_b as a linear weighting of 
+						the model features rather than using them as input as is done in the full HiP-MDP model.
+					'modelfree': Learns a policy based solely on observed transitions,
+					'modelbased': builds a model for accelerating policy learning from only the current instance's data
 		ddqn_learning_rate -- DQN ADAM learning rate (default=0.0001)
 		episode_count -- Number of episodes per instance (default=500)
 		bnn_hidden_layer_size -- Number of units in each hidden layer (default=25)
@@ -42,8 +47,9 @@ class HiPMDP(object):
 		eps_min -- Minimum epsilon value for e-greedy policy (default=0.15)
 		test_inst -- Index corresponding to the desired test instance; irrelevant when creating an experience batch (default=None)
 		create_exp_batch -- Boolean indicating if this framework is for creating an experience batch (default=False) 
+		num_batch_instances -- number of instances desired in constructing a batch of data to train, default is false to cleanly override if not specified
 		grid_beta -- Beta hyperparameter for grid domain governing; a weight on the magnitude of the "drift" (default=0.23)
-		 _output -- Print verbose output
+		print_output -- Print verbose output
 		"""
 
 		self.__initialize_params()
@@ -63,6 +69,7 @@ class HiPMDP(object):
 		self.eps_min = eps_min
 		self.test_inst = test_inst
 		self.create_exp_batch = create_exp_batch
+		self.num_batch_instances = num_batch_instances
 		self.save_results = save_results
 		self.grid_beta = grid_beta
 		self.print_output = print_output
@@ -118,7 +125,10 @@ class HiPMDP(object):
 		if self.domain == 'acrobot':
 			from acrobot_simulator.acrobot import Acrobot as model
 			if self.create_exp_batch:
-				self.instance_count = 8 # number of instances to include in experience batch
+				if self.num_batch_instances:
+					self.instance_count = self.num_batch_instances
+				else:
+					self.instance_count = 8 # number of instances to include in experience batch
 			self.max_task_examples = 400 # maximum number of time steps per episode
 			self.min_avg_rwd_per_ep = -12 # minimum average reward before stopping DQN training
 			self.bnn_learning_rate = 0.00025
@@ -129,7 +139,10 @@ class HiPMDP(object):
 		elif self.domain == 'grid':
 			from grid_simulator.grid import Grid as model
 			if self.create_exp_batch:
-				self.instance_count = 2
+				if self.num_batch_instances:
+					self.instance_count = self.num_batch_instances
+				else:
+					self.instance_count = 2
 			self.max_task_examples = 100
 			self.min_avg_rwd_per_ep = 980
 			self.bnn_learning_rate = 0.00005
@@ -148,7 +161,10 @@ class HiPMDP(object):
 		elif self.domain == 'hiv':
 			from hiv_simulator.hiv import HIVTreatment as model
 			if self.create_exp_batch:
-				self.instance_count = 5
+				if self.num_batch_instances:
+					self.instance_count = self.num_batch_instances
+				else:
+					self.instance_count = 5
 			self.max_task_examples = 200
 			self.min_avg_rwd_per_ep = 1e15
 			self.bnn_learning_rate = 0.00025
