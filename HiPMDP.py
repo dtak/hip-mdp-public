@@ -549,7 +549,7 @@ class HiPMDP(object):
 							episode_Y -= episode_X[:,:self.num_dims]
 						for update_iter in xrange(self.num_initial_update_iters):	
 							if self.run_type_full:
-								self	.__update_latent_weights()
+								self.__update_latent_weights()
 								l2_errors = self.network.get_td_error(np.hstack([episode_X, np.tile(self.weight_set, (episode_X.shape[0],1))]), episode_Y, 0.0, 1.0)
 								if self.print_output:
 									print('BNN Error after latent update iter {}: {}'.format(update_iter,np.mean(l2_errors)))
