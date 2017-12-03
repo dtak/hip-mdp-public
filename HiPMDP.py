@@ -628,7 +628,10 @@ class HiPMDP(object):
 			if self.create_exp_batch:
 				exp_buffer = self.general_bnn_buffer.exp_buffer
 			else:
-				exp_buffer = self.instance_bnn_buffer.exp_buffer
+				if self.run_type != 'modelfree':
+					exp_buffer = self.instance_bnn_buffer.exp_buffer
+				else:
+					exp_buffer = self.real_buffer.exp_buffer
 			if self.save_results:
 				with open(self.domain + '_' + self.run_type + '_results_inst' + str(self.default_inst) + '_uaiHiP_larger_exp_replay_preload_{}'.format(self.run),'w') as f:
 					pickle.dump((exp_buffer, networkweights, self.rewards, self.avg_rwd_per_ep, self.full_task_weights,
