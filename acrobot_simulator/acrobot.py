@@ -1,5 +1,5 @@
 """HIV Treatment domain based on https://bitbucket.org/rlpy/rlpy/src/master/rlpy/Domains/Acrobot.py"""
-from acro_utils import check_random_state, wrap, bound, fromAtoB, rk4
+from acro_utils import wrap, bound, rk4
 import numpy as np
 
 __copyright__ = "Copyright 2013, RLPy http://acl.mit.edu/RLPy"
