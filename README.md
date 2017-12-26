@@ -1,6 +1,6 @@
 # Robust and Efficient Transfer Learning with Hidden Parameter Markov Decision Processes
 
-This repository contains an implementation of a framework for training and testing Hidden Parameter Markov Decision Processes (to appear at NIPS 2017, pre-print [available here](https://arxiv.org/abs/1706.06544)) and other RL benchmarks.
+This repository contains an implementation of a framework for training and testing Hidden Parameter Markov Decision Processes (selected for an Oral presentation at NIPS 2017, paper [available here](https://papers.nips.cc/paper/7205-robust-and-efficient-transfer-learning-with-hidden-parameter-markov-decision-processes), video [here](https://www.facebook.com/nipsfoundation/videos/1554741347950432/)) and other RL benchmarks.
 
 ### Abstract
 
