@@ -218,7 +218,7 @@ class HiPMDP(object):
 		a[action] = 1
 		return a
 
-	def __load_reward_standarization(self):
+	def __load_reward_standardization(self):
 		"""Load the reward mean and standard deviation."""
 		with open('preset_parameters/'+self.domain+'_rewards_standardization','r') as f:
 			self.rewards_standardization = pickle.load(f)
@@ -611,7 +611,7 @@ class HiPMDP(object):
 		self.instance_iter = 0
 
 		if self.standardize_rewards:
-			self.__load_reward_standarization()
+			self.__load_reward_standardization()
 
 		if self.standardize_states:
 			self.__load_state_standardization()
